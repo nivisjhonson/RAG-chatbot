@@ -1,0 +1,39 @@
+========================================
+RUN THESE COMMANDS TO START THE APP
+========================================
+
+STEP 1: Open Command Prompt (cmd)
+Press Windows Key + R
+Type: cmd
+Press Enter
+
+STEP 2: Copy and paste this command:
+cd c:\Users\Dell\Desktop\RAG\backend && python -m uvicorn app:app --reload
+
+Wait for: "Application startup complete"
+
+STEP 3: Open ANOTHER Command Prompt
+Press Windows Key + R again
+Type: cmd
+Press Enter
+
+STEP 4: Copy and paste this command:
+cd c:\Users\Dell\Desktop\RAG\frontend && npm start
+
+Browser will open automatically!
+
+========================================
+OR JUST DOUBLE-CLICK:
+========================================
+
+File: c:\Users\Dell\Desktop\RAG\RUN.bat
+
+========================================
+YOUR LINKS:
+========================================
+
+Frontend (Main App): http://localhost:3000
+Backend API: http://127.0.0.1:8000
+API Docs: http://127.0.0.1:8000/docs
+
+========================================

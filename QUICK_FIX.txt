@@ -1,0 +1,23 @@
+# UPLOAD FIX GUIDE
+
+## QUICK FIX - RUN THESE COMMANDS:
+
+### Terminal 1 - Backend:
+cd c:\Users\Dell\Desktop\RAG\backend
+python -m uvicorn app:app --reload
+
+### Terminal 2 - Frontend:
+cd c:\Users\Dell\Desktop\RAG\frontend
+npm start
+
+## WAIT FOR:
+Backend: "Application startup complete"
+Frontend: Browser opens to http://localhost:3000
+
+## THEN:
+1. Click "Try as Guest"
+2. Upload PDF
+3. Ask questions
+
+## IF STILL FAILS:
+Check backend terminal for error messages

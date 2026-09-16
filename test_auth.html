@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RAG Chatbot Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 800px; margin: 0 auto; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .success { color: green; }
+        .error { color: red; }
+        #log { background: #f5f5f5; padding: 10px; margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>RAG PDF Chatbot - Authentication Test</h1>
+    
+    <div>
+        <button onclick="testBackend()">1. Test Backend</button>
+        <button onclick="createGuestSession()">2. Create Guest Session</button>
+        <button onclick="testUpload()">3. Test Upload (needs token)</button>
+        <button onclick="testAsk()">4. Test Ask (needs token)</button>
+    </div>
+    
+    <div id="log"></div>
+    
+    <script>
+        const API_URL = 'http://127.0.0.1:8000';
+        let token = null;
+        
+        function log(message, isError = false) {
+            const logDiv = document.getElementById('log');
+            const className = isError ? 'error' : 'success';
+            logDiv.innerHTML += `<div class="${className}">${message}</div>`;
+        }
+        
+        async function testBackend() {
+            log('Testing backend connection...');
+            try {
+                const response = await fetch(`${API_URL}/`);
+                const data = await response.json();
+                log(`✅ Backend is running: ${JSON.stringify(data)}`);
+            } catch (error) {
+                log(`❌ Backend error: ${error.message}`, true);
+            }
+        }
+        
+        async function createGuestSession() {
+            log('Creating guest session...');
+            try {
+                const response = await fetch(`${API_URL}/guest-session`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                token = data.token;
+                log(`✅ Guest session created!`);
+                log(`Token: ${token.substring(0, 50)}...`);
+                localStorage.setItem('token', token);
+            } catch (error) {
+                log(`❌ Guest session error: ${error.message}`, true);
+            }
+        }
+        
+        async function testUpload() {
+            if (!token) {
+                log('❌ No token! Create guest session first.', true);
+                return;
+            }
+            log('Testing upload endpoint (without file)...');
+            try {
+                const response = await fetch(`${API_URL}/upload-pdf`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                log(`Response: ${JSON.stringify(data)}`);
+            } catch (error) {
+                log(`❌ Upload test error: ${error.message}`, true);
+            }
+        }
+        
+        async function testAsk() {
+            if (!token) {
+                log('❌ No token! Create guest session first.', true);
+                return;
+            }
+            log('Testing ask endpoint...');
+            try {
+                const response = await fetch(`${API_URL}/ask`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question: 'Test question'
+                    })
+                });
+                const data = await response.json();
+                log(`✅ Response: ${data.answer}`);
+            } catch (error) {
+                log(`❌ Ask error: ${error.message}`, true);
+            }
+        }
+    </script>
+</body>
+</html>

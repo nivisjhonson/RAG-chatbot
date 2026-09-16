@@ -1,0 +1,110 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║          LOCALHOST NOT OPENING? TRY THIS!                    ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+PROBLEM: Website not opening at localhost
+
+SOLUTION: Test each part separately
+
+╔══════════════════════════════════════════════════════════════╗
+║  STEP 1: Test Backend First                                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+1. Double-click: TEST_BACKEND.bat
+
+2. You should see:
+   ✓ Loading embedding model...
+   ✓ Connecting to Pinecone...
+   ✓ Application startup complete
+   ✓ Uvicorn running on http://127.0.0.1:8000
+
+3. Open browser and go to: http://127.0.0.1:8000
+   You should see: {"message":"RAG PDF Chatbot API","status":"running"}
+
+4. If it works: Press Ctrl+C to stop
+   If it fails: Copy the error message
+
+╔══════════════════════════════════════════════════════════════╗
+║  STEP 2: Test Frontend                                       ║
+╚══════════════════════════════════════════════════════════════╝
+
+1. Double-click: TEST_FRONTEND.bat
+
+2. You should see:
+   ✓ Compiled successfully!
+   ✓ webpack compiled
+   ✓ Browser opens automatically
+
+3. If browser doesn't open, manually go to: http://localhost:3000
+
+4. If it works: You'll see the RAG PDF Chatbot homepage
+   If it fails: Copy the error message
+
+╔══════════════════════════════════════════════════════════════╗
+║  STEP 3: Run Both Together                                   ║
+╚══════════════════════════════════════════════════════════════╝
+
+If both tests work individually:
+
+1. Double-click: DIAGNOSE.bat
+   (This will test everything and start both servers)
+
+2. Wait for both windows to show "ready"
+
+3. Open browser to: http://localhost:3000
+
+╔══════════════════════════════════════════════════════════════╗
+║  COMMON PROBLEMS & FIXES:                                    ║
+╚══════════════════════════════════════════════════════════════╝
+
+Problem: "Python not found"
+Fix: Install Python from https://www.python.org/downloads/
+
+Problem: "Node.js not found" or "npm not found"
+Fix: Install Node.js from https://nodejs.org/
+
+Problem: "Port 8000 already in use"
+Fix: Close other programs or restart computer
+
+Problem: "Port 3000 already in use"
+Fix: Close other programs or restart computer
+
+Problem: Backend starts but shows errors
+Fix: Check if Pinecone API key is correct in backend\.env
+
+Problem: Frontend shows blank page
+Fix: Check browser console (F12) for errors
+
+╔══════════════════════════════════════════════════════════════╗
+║  WHAT TO DO NOW:                                             ║
+╚══════════════════════════════════════════════════════════════╝
+
+1. Double-click: TEST_BACKEND.bat
+   → Tell me what you see (success or error?)
+
+2. If backend works, double-click: TEST_FRONTEND.bat
+   → Tell me what you see (success or error?)
+
+3. If both work, double-click: DIAGNOSE.bat
+   → This will start everything
+
+╔══════════════════════════════════════════════════════════════╗
+║  FILES TO USE (in order):                                    ║
+╚══════════════════════════════════════════════════════════════╝
+
+1. TEST_BACKEND.bat   ← Start here
+2. TEST_FRONTEND.bat  ← Then this
+3. DIAGNOSE.bat       ← Finally this
+
+╔══════════════════════════════════════════════════════════════╗
+║  NEED HELP?                                                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+Run TEST_BACKEND.bat and tell me:
+- Does it show errors? (copy the error)
+- Does it say "Application startup complete"?
+- Can you open http://127.0.0.1:8000 in browser?
+
+This will help me find the exact problem!

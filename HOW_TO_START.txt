@@ -1,0 +1,115 @@
+========================================
+STEP-BY-STEP: HOW TO RUN THE APP
+========================================
+
+The links won't work until you START THE SERVERS first!
+
+========================================
+METHOD 1: EASIEST WAY
+========================================
+
+1. Go to folder: c:\Users\Dell\Desktop\RAG
+
+2. Find file: RUN.bat
+
+3. RIGHT-CLICK on RUN.bat
+
+4. Click "Run as administrator"
+
+5. Two black windows will open:
+   - Window 1: Backend Server
+   - Window 2: Frontend Server
+
+6. Wait 10-15 seconds
+
+7. Browser will open automatically to:
+   http://localhost:3000
+
+========================================
+METHOD 2: MANUAL WAY
+========================================
+
+STEP 1: Start Backend
+---------------------
+1. Press Windows Key + R
+2. Type: cmd
+3. Press Enter
+4. Copy and paste this EXACT command:
+
+cd c:\Users\Dell\Desktop\RAG\backend && python -m uvicorn app:app --reload
+
+5. Press Enter
+6. Wait for: "Application startup complete"
+7. KEEP THIS WINDOW OPEN!
+
+STEP 2: Start Frontend
+---------------------
+1. Press Windows Key + R again
+2. Type: cmd
+3. Press Enter
+4. Copy and paste this EXACT command:
+
+cd c:\Users\Dell\Desktop\RAG\frontend && npm start
+
+5. Press Enter
+6. Wait for browser to open
+7. KEEP THIS WINDOW OPEN TOO!
+
+========================================
+WHAT YOU SHOULD SEE:
+========================================
+
+Backend Window Shows:
+- Loading embedding model...
+- Connecting to Pinecone...
+- PDFIngestor initialized successfully
+- Application startup complete
+- Uvicorn running on http://0.0.0.0:8000
+
+Frontend Window Shows:
+- Compiled successfully!
+- webpack compiled
+- Browser opens automatically
+
+========================================
+IF BROWSER DOESN'T OPEN:
+========================================
+
+Manually open browser and go to:
+http://localhost:3000
+
+========================================
+TROUBLESHOOTING:
+========================================
+
+Problem: "Command not found"
+Solution: Make sure you're in the correct folder
+
+Problem: "Port already in use"
+Solution: Close any other programs using port 3000 or 8000
+
+Problem: "npm not found"
+Solution: Node.js not installed properly
+
+Problem: Backend window closes immediately
+Solution: Check for error messages in red
+
+========================================
+IMPORTANT:
+========================================
+
+- You MUST keep BOTH windows open
+- Don't close the black terminal windows
+- If you close them, the app stops working
+- To stop: Press Ctrl+C in both windows
+
+========================================
+AFTER SERVERS START:
+========================================
+
+1. Browser opens to: http://localhost:3000
+2. Click "Try as Guest"
+3. Upload a PDF file
+4. Ask questions!
+
+========================================

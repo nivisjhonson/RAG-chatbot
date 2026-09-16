@@ -1,0 +1,126 @@
+# UPLOAD FAILED - TROUBLESHOOTING GUIDE
+
+## STEP-BY-STEP FIX:
+
+### STEP 1: Start Backend Server
+
+Open Terminal/CMD and run:
+```
+cd c:\Users\Dell\Desktop\RAG\backend
+python -m uvicorn app:app --reload --host 0.0.0.0 --port 8000
+```
+
+OR double-click: `backend\RUN_BACKEND.bat`
+
+Wait for this message:
+```
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000
+```
+
+### STEP 2: Verify Backend is Running
+
+Open browser and go to: http://127.0.0.1:8000
+
+You should see:
+```json
+{"message":"RAG PDF Chatbot API","status":"running"}
+```
+
+### STEP 3: Start Frontend
+
+Open NEW Terminal/CMD and run:
+```
+cd c:\Users\Dell\Desktop\RAG\frontend
+npm start
+```
+
+OR double-click: `frontend\RUN_FRONTEND.bat`
+
+Browser opens to: http://localhost:3000
+
+### STEP 4: Test Upload
+
+1. Click "Try as Guest"
+2. Click "Choose File" 
+3. Select a PDF file
+4. Click "Upload"
+5. Wait for "PDF uploaded successfully!"
+
+## COMMON ERRORS & FIXES:
+
+### Error: "Upload failed"
+
+**Cause:** Backend not running
+**Fix:** Start backend first (Step 1)
+
+### Error: "Network Error"
+
+**Cause:** Frontend can't reach backend
+**Fix:** 
+- Check backend is running on port 8000
+- Check http://127.0.0.1:8000 in browser
+
+### Error: "401 Unauthorized"
+
+**Cause:** Token issue
+**Fix:**
+- Logout and login again
+- Clear browser cache (Ctrl+Shift+Delete)
+- Try guest mode
+
+### Error: "Only PDF files allowed"
+
+**Cause:** Wrong file type
+**Fix:** Select a .pdf file only
+
+### Error: "Pinecone error"
+
+**Cause:** Pinecone API key issue
+**Fix:**
+- Check backend\.env file has correct PINECONE_API_KEY
+- Verify key at: https://app.pinecone.io/
+
+## MANUAL TEST:
+
+Run this in backend folder:
+```
+python test_upload.py
+```
+
+Should show:
+```
+[SUCCESS] Backend is ready!
+```
+
+## QUICK CHECK:
+
+1. Backend running? → http://127.0.0.1:8000
+2. Frontend running? → http://localhost:3000
+3. Logged in? → See "Hello, Guest" in navbar
+4. PDF file? → Must be .pdf extension
+
+## STILL NOT WORKING?
+
+Check backend terminal for error messages:
+- Look for red ERROR lines
+- Check for Pinecone connection errors
+- Verify all imports loaded
+
+Check frontend browser console (F12):
+- Look for red errors
+- Check Network tab for failed requests
+- Verify API calls to http://127.0.0.1:8000
+
+## FILES TO RUN:
+
+Backend: `backend\RUN_BACKEND.bat`
+Frontend: `frontend\RUN_FRONTEND.bat`
+Both: `START_APP.bat`
+
+## NEED HELP?
+
+1. Check both terminal windows for errors
+2. Verify .env file has Pinecone API key
+3. Test with small PDF file first (< 5MB)
+4. Try guest mode instead of login
